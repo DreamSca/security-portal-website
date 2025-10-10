@@ -67,6 +67,77 @@
             background-color: #f59e0b;
             border: 3px solid white;
         }
+        /* style explicit arrow glyphs we inserted */
+        .departments-swiper .swiper-button-next,
+        .departments-swiper .swiper-button-prev,
+        .clients-swiper .swiper-button-next,
+        .clients-swiper .swiper-button-prev {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-size: 22px !important;
+            line-height: 1 !important;
+            background: transparent !important;
+            border-radius: 9999px !important;
+        }
+    </style>
+    <!-- Lightbox for profile images -->
+    <style>
+        .js-lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 180ms ease-in-out;
+        }
+        .js-lightbox-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .js-lightbox-overlay img {
+            max-width: 92%;
+            max-height: 92%;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            transform: scale(1);
+        }
+        .js-lightbox-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            border-radius: 9999px;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+        .js-lightbox-close:hover { background: rgba(255,255,255,0.12); }
+    </style>
+    <!-- MegaVPS design snippets (colors/controls) -->
+    <style>
+        /* ensure arrow glyphs use readable size */
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 20px !important;
+            font-weight: bold;
+        }
+        /* clients swiper pagination accent */
+        .clients-swiper {
+            padding-bottom: 50px !important;
+        }
+        .clients-swiper .swiper-pagination-bullet-active {
+            background-color: #f59e0b !important;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -503,17 +574,31 @@
                                     <div class="grid grid-cols-2 gap-4">
                                         <div class="text-center">
                                             <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
-                                                <img src="http://static.photos/people/200x200/5" alt="Field Ops" class="w-full h-full object-cover">
+                                                <img src="images/organizational chart/DO 1.jpg" alt="Field Ops" class="w-full h-full object-cover">
                                             </div>
-                                            <h4 class="font-bold text-sm text-gray-800">James Wilson</h4>
-                                            <p class="text-green-600 text-xs">Field Operations</p>
+                                            <h4 class="font-bold text-sm text-gray-800">Ricky Sotana</h4>
+                                            <p class="text-green-600 text-xs">District Officer</p>
                                         </div>
                                         <div class="text-center">
                                             <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
-                                                <img src="http://static.photos/people/200x200/6" alt="Training" class="w-full h-full object-cover">
+                                                <img src="images/organizational chart/DO 3.png" alt="Training" class="w-full h-full object-cover">
                                             </div>
-                                            <h4 class="font-bold text-sm text-gray-800">Elena Rodriguez</h4>
-                                            <p class="text-green-600 text-xs">Training Director</p>
+                                            <h4 class="font-bold text-sm text-gray-800">Agustin Dalut</h4>
+                                            <p class="text-green-600 text-xs">District Officer</p>
+                                        </div>
+                                         <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/DO 5.png" alt="Training" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Emmanuel Corre Jr.</h4>
+                                            <p class="text-green-600 text-xs">District Officer</p>
+                                        </div>
+                                         <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/DO 8.png" alt="Training" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Garry Buena</h4>
+                                            <p class="text-green-600 text-xs">District Officer</p>
                                         </div>
                                         
                                     </div>
@@ -582,53 +667,179 @@
                                     <div class="grid grid-cols-2 gap-4">
                                         <div class="text-center">
                                             <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
-                                                <img src="images/organizational chart/ACCOUNTING STAFF 1.png" alt="Accounts Payable" class="w-full h-full object-cover">
+                                                <img src="images/organizational chart/Accounting 1.jpg" alt="Accounts Payable" class="w-full h-full object-cover">
                                             </div>
-                                            <h4 class="font-bold text-sm text-gray-800">Ronalyn B. Ocampo</h4>
-                                            <p class="text-green-600 text-xs">Accounting Staff</p>
+                                            <h4 class="font-bold text-sm text-gray-800">Nicky Jeant Reynaldo</h4>
+                                            <p class="text-green-600 text-xs">General Accounting</p>
                                         </div>
                                         <div class="text-center">
                                             <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
-                                                <img src="images/organizational chart/ACCOUNTING STAFF 2.png" alt="Accounts Receivable" class="w-full h-full object-cover">
+                                                <img src="images/organizational chart/Accounting  2.png" alt="Accounts Payable" class="w-full h-full object-cover">
                                             </div>
-                                            <h4 class="font-bold text-sm text-gray-800">Rica Mae C. Cabusao</h4>
-                                            <p class="text-green-600 text-xs">Accounting Staff</p>
+                                            <h4 class="font-bold text-sm text-gray-800">Allian Martinez</h4>
+                                            <p class="text-green-600 text-xs">Company Auditor</p>
                                         </div>
                                         <div class="text-center">
                                             <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
-                                                <img src="images/organizational chart/ACCOUNTING STAFF 3.png" alt="Payroll" class="w-full h-full object-cover">
+                                                <img src="images/organizational chart/Accounting 4.jpg" alt="Accounts Receivable" class="w-full h-full object-cover">
                                             </div>
-                                            <h4 class="font-bold text-sm text-gray-800">Mary Grace P. Pablico</h4>
-                                            <p class="text-green-600 text-xs">Accounting Staff</p>
+                                            <h4 class="font-bold text-sm text-gray-800">Alliah Condes</h4>
+                                            <p class="text-green-600 text-xs">Accounts Payable JCI & MEGAVPS</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/Accounting 5.png" alt="Payroll" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Charlie Olacao</h4>
+                                            <p class="text-green-600 text-xs">Accounting Assistant/VPS Accounts Payable</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/Accounting 6.png" alt="Payroll" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Arlou Gamboa</h4>
+                                            <p class="text-green-600 text-xs">Liason Officer</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/Accounting 7.png" alt="Payroll" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Joel Galaura</h4>
+                                            <p class="text-green-600 text-xs">Collector</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Billing & Collection Officer -->
+                            <div class="swiper-slide">
+                                <div class="bg-gradient-to-b from-green-50 to-white p-6 rounded-xl shadow-lg border-2 border-green-400">
+                                    <h3 class="text-lg font-bold text-center text-gray-800 mb-4">Billing & Collection Officer</h3>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/Accounting 3.png" alt="Accounts Payable" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Trisha Leian Suarez</h4>
+                                            <p class="text-green-600 text-xs">JCSSI Billing & Collection Officer</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/Billing 3.jpg" alt="Accounts Payable" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Rogelio Valdez</h4>
+                                            <p class="text-green-600 text-xs">MEGAVPS Billing & Collection Officer</p>
+                                        </div>
+                                        
+                                        <div class="text-center col-span-2">
+                                            <div class="w-full flex justify-center">
+                                                <div class="w-24 h-24 mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                    <img src="images/organizational chart/Billing 2.png" alt="Client Relations" class="w-full h-full object-cover">
+                                                </div>
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Donna Mae Tendan</h4>
+                                            <p class="text-green-600 text-xs">VPS Billing & Collection Officer</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                            
+                            <!-- Wage & Salary Administrator -->
+                            <div class="swiper-slide">
+                                <div class="bg-gradient-to-b from-green-50 to-white p-6 rounded-xl shadow-lg border-2 border-green-400">
+                                    <h3 class="text-lg font-bold text-center text-gray-800 mb-4">Wage & Salary Administrator</h3>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/Wage 1.png" alt="Accounts Payable" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Hanilyn Funtanar</h4>
+                                            <p class="text-green-600 text-xs">JCSSI Wage & Salary Administrator</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/Wage 2.png" alt="Accounts Payable" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Shema Mae De Vara</h4>
+                                            <p class="text-green-600 text-xs">MEGAVPS Wage & Salary Administrator</p>
+                                        </div>
+                                        
+                                        <div class="text-center col-span-2">
+                                            <div class="w-full flex justify-center">
+                                                <div class="w-24 h-24 mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                    <img src="images/organizational chart/Wage 3.png" alt="Client Relations" class="w-full h-full object-cover">
+                                                </div>
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Ricalyn Montalaba</h4>
+                                            <p class="text-green-600 text-xs">VPS Wage & Salary Administrator</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- Regional Operations -->
                             <div class="swiper-slide">
                                 <div class="bg-gradient-to-b from-green-50 to-white p-6 rounded-xl shadow-lg border-2 border-green-400">
-                                    <h3 class="text-lg font-bold text-center text-gray-800 mb-4">Regional Operations</h3>
+                                    <h3 class="text-lg font-bold text-center text-gray-800 mb-4">Quality Control Inspector</h3>
                                     <div class="grid grid-cols-2 gap-4">
                                         <div class="text-center">
                                             <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
-                                                <img src="http://static.photos/people/200x200/9" alt="East Region" class="w-full h-full object-cover">
+                                                <img src="images/organizational chart/QCI 11.jpg" alt="East Region" class="w-full h-full object-cover">
                                             </div>
-                                            <h4 class="font-bold text-sm text-gray-800">Marcus Johnson</h4>
-                                            <p class="text-green-600 text-xs">East Region</p>
+                                            <h4 class="font-bold text-sm text-gray-800">Alfredo Balacano</h4>
+                                            <p class="text-green-600 text-xs">Inspector - South Luzon</p>
                                         </div>
                                         <div class="text-center">
                                             <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
-                                                <img src="http://static.photos/people/200x200/10" alt="West Region" class="w-full h-full object-cover">
+                                                <img src="images/organizational chart/QCI 2.png" alt="West Region" class="w-full h-full object-cover">
                                             </div>
-                                            <h4 class="font-bold text-sm text-gray-800">Sofia Patel</h4>
-                                            <p class="text-green-600 text-xs">West Region</p>
+                                            <h4 class="font-bold text-sm text-gray-800">Vic Jhonny Laurio</h4>
+                                            <p class="text-green-600 text-xs">Inspector</p>
+                                        </div>
+                                        <div class="text-center col-span-2">
+                                            <div class="w-full flex justify-center">
+                                                <div class="w-24 h-24 mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                    <img src="images/organizational chart/QCI 3.png" alt="Client Relations" class="w-full h-full object-cover">
+                                                </div>
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Gerry Cabrales</h4>
+                                            <p class="text-green-600 text-xs">Inspector</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+ <!-- Regional Operations -->
+                            <div class="swiper-slide">
+                                <div class="bg-gradient-to-b from-green-50 to-white p-6 rounded-xl shadow-lg border-2 border-green-400">
+                                    <h3 class="text-lg font-bold text-center text-gray-800 mb-4">Project Managers</h3>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/PROJECT MGNR BGC.png" alt="East Region" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Jerry Ricarte</h4>
+                                            <p class="text-green-600 text-xs">Project Manager - BGC</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                <img src="images/organizational chart/PROJECT MGNR CENTRA LUZON.png" alt="West Region" class="w-full h-full object-cover">
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Manolito Miguela</h4>
+                                            <p class="text-green-600 text-xs">Project Manager - Central Luzon</p>
+                                        </div>
+                                        <div class="text-center col-span-2">
+                                            <div class="w-full flex justify-center">
+                                                <div class="w-24 h-24 mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                    <img src="images/organizational chart/PROJECT MGNR ELNIDO.png" alt="Client Relations" class="w-full h-full object-cover">
+                                                </div>
+                                            </div>
+                                            <h4 class="font-bold text-sm text-gray-800">Vanessa Lachica</h4>
+                                            <p class="text-green-600 text-xs">Project Manager - Elnido</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Support Services -->
                             <div class="swiper-slide">
                                 <div class="bg-gradient-to-b from-green-50 to-white p-6 rounded-xl shadow-lg border-2 border-green-400">
@@ -757,25 +968,24 @@
                                             <h4 class="font-bold text-sm text-gray-800">Jeffrey Opada</h4>
                                             <p class="text-green-600 text-xs">Technician</p>
                                         </div>
-                                        <div class="text-center">
-                                            <div class="w-24 h-24 mx-auto mb-2 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
-                                                <img src="images/organizational chart/JANITOR.jpg" alt="Client Relations" class="w-full h-full object-cover">
+                                        <div class="text-center col-span-2 flex justify-center">
+                                            <div class="w-full max-w-[200px]">
+                                                <div class="w-24 h-24 mx-auto mb-3 rounded-full overflow-hidden bg-white ring-2 ring-green-300">
+                                                    <img src="images/organizational chart/JANITOR.jpg" alt="Client Relations" class="w-full h-full object-cover">
+                                                </div>
+                                                <h4 class="font-bold text-gray-800">Alimodin Sultan</h4>
+                                                <p class="text-green-600">Janitor</p>
                                             </div>
-                                            <h4 class="font-bold text-sm text-gray-800">Alimodin Sultan</h4>
-                                            <p class="text-green-600 text-xs">Janitor</p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                            
                         
-                        <!-- Navigation Buttons -->
-                        <div class="swiper-button-next !text-gray-800 !after:text-xl"></div>
-                        <div class="swiper-button-prev !text-gray-800 !after:text-xl"></div>
-                        
-                        <!-- Pagination -->
-                        <div class="
-                         !bottom-0"></div>
+                    <!-- Pagination -->
+                    <div class="swiper-pagination !bottom-0"></div>
+                    <!-- Navigation Buttons -->
+                    <div class="swiper-button-next !text-gray-800 !after:text-xl"></div>
+                    <div class="swiper-button-prev !text-gray-800 !after:text-xl"></div>
                     </div>
                 </div>
 
@@ -809,22 +1019,79 @@
                     height: 40px;
                     background-color: #CBD5E0;
                 }
+                /* arrow glyph sizing */
                 .swiper-button-next::after,
                 .swiper-button-prev::after {
                     font-size: 20px !important;
                     font-weight: bold;
+                    color: inherit;
                 }
-                .departments-swiper {
-                    padding-bottom: 50px !important;
-                }
-                .departments-swiper .swiper-pagination-bullet-active {
-                    background-color: #10B981 !important;
-                }
+
+                /* Keep swiper containers positioned but do NOT hide overflow so arrows can sit outside slides */
+                .departments-swiper,
                 .clients-swiper {
+                    position: relative;
                     padding-bottom: 50px !important;
                 }
+
+                /* Navigation buttons: make visible and on top */
+                .swiper-button-next,
+                .swiper-button-prev {
+                    color: #1f2937 !important; /* gray-800 */
+                    z-index: 60 !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    display: block !important;
+                    transition: transform 0.2s ease, color 0.2s ease;
+                }
+                .swiper-button-next:hover,
+                .swiper-button-prev:hover {
+                    color: #f59e0b !important; /* amber like MegaVPS */
+                    transform: scale(1.08);
+                }
+
+                /* Force visible arrow glyphs and interactivity for Departments swiper */
+                .departments-swiper .swiper-button-next::after {
+                    content: '›' !important;
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    width: 44px !important;
+                    height: 44px !important;
+                    line-height: 44px !important;
+                    font-size: 22px !important;
+                    color: inherit !important;
+                }
+                .departments-swiper .swiper-button-prev::after {
+                    content: '‹' !important;
+                    display: inline-flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    width: 44px !important;
+                    height: 44px !important;
+                    line-height: 44px !important;
+                    font-size: 22px !important;
+                    color: inherit !important;
+                }
+                .departments-swiper .swiper-button-next,
+                .departments-swiper .swiper-button-prev {
+                    pointer-events: auto !important;
+                    z-index: 9999 !important;
+                    background: rgba(255,255,255,0.96) !important;
+                    border-radius: 9999px !important;
+                    box-shadow: 0 6px 24px rgba(17,24,39,0.12) !important;
+                }
+
+                /* Pagination bullets styling to match MegaVPS */
+                .departments-swiper .swiper-pagination-bullet,
+                .clients-swiper .swiper-pagination-bullet {
+                    background: #d1d5db !important; /* gray-300 */
+                    opacity: 0.8;
+                }
+                .departments-swiper .swiper-pagination-bullet-active,
                 .clients-swiper .swiper-pagination-bullet-active {
-                    background-color: #f59e0b !important;
+                    background: #10B981 !important; /* green like MegaVPS */
+                    opacity: 1;
                 }
             </style>
         </div>
@@ -1068,31 +1335,33 @@
         });
 
         // Initialize Swiper
-        const departmentsSwiper = new Swiper('.departments-swiper', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
+         // ✅ Initialize Swiper
+    const departmentsSwiper = new Swiper('.departments-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.departments-swiper .swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.departments-swiper .swiper-button-next',
+            prevEl: '.departments-swiper .swiper-button-prev',
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
             },
-            pagination: {
-                el: '.departments-swiper .swiper-pagination',
-                clickable: true,
+            1024: {
+                slidesPerView: 3,
             },
-            navigation: {
-                nextEl: '.departments-swiper .swiper-button-next',
-                prevEl: '.departments-swiper .swiper-button-prev',
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: 2,
-                },
-                1024: {
-                    slidesPerView: 3,
-                },
-            },
-        });
+        },
+    });
+        // ✅ Initialize Swiper
 
         const clientsSwiper = new Swiper('.clients-swiper', {
             slidesPerView: 1,
@@ -1148,33 +1417,213 @@
 
         feather.replace();
 
-        // Modal functionality for organizational chart
-        document.querySelectorAll('.org-chart img').forEach(img => {
-            img.addEventListener('click', () => {
+        // Fix: move any swiper controls that were accidentally placed inside a slide
+        // into their parent .swiper container, then (re)initialize departments swiper
+        (function(){
+            try{
+                // move misplaced controls out of slides
+                document.querySelectorAll('.swiper-slide .swiper-pagination, .swiper-slide .swiper-button-next, .swiper-slide .swiper-button-prev').forEach(el => {
+                    const sw = el.closest('.swiper');
+                    if(!sw) return;
+                    if(el.parentElement !== sw) {
+                        sw.appendChild(el);
+                        console.log('SW-FIX: moved control', el.className, 'to', sw.className);
+                    }
+                });
+
+                // re-init departments swiper to ensure it binds to the controls now in the right place
+                // create a new instance and attach to window so we can call it from console
+                setTimeout(()=>{
+                    try{
+                        if(window.departmentsSwiper && typeof window.departmentsSwiper.destroy === 'function'){
+                            try{ window.departmentsSwiper.destroy(true, true); } catch(e){}
+                        }
+                        window.departmentsSwiper = new Swiper('.departments-swiper', {
+                            slidesPerView: 1,
+                            spaceBetween: 30,
+                            loop: true,
+                            autoplay: { delay: 5000, disableOnInteraction: false },
+                            pagination: { el: '.departments-swiper .swiper-pagination', clickable: true },
+                            navigation: { nextEl: '.departments-swiper .swiper-button-next', prevEl: '.departments-swiper .swiper-button-prev' },
+                            breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+                        });
+                        console.log('SW-FIX: departmentsSwiper reinitialized');
+                    }catch(e){ console.error('SW-FIX: reinit error', e); }
+                }, 30);
+            }catch(e){ console.error('SW-FIX error', e); }
+        })();
+
+        // Modal / lightbox functionality for organizational chart images
+        document.addEventListener('DOMContentLoaded', function(){
+            (function(){
+                const modal = document.getElementById('imageModal');
+                // ensure the modal is a direct child of body to avoid fixed-position being scoped
+                try{ if(modal && modal.parentElement !== document.body) document.body.appendChild(modal); }catch(e){}
+                const modalImg = document.getElementById('modalImage');
+                const modalName = document.getElementById('modalName');
+                const modalTitle = document.getElementById('modalTitle');
+                const closeBtn = document.getElementById('closeModal');
+
+                if(!modal || !modalImg) return;
+
+                // select images that belong to the organizational chart (file path contains 'organizational chart')
+                const imgs = Array.from(document.querySelectorAll('.org-chart img')).concat(
+                    Array.from(document.querySelectorAll('img[src*="organizational chart"]'))
+                ).filter(Boolean);
+
+                // cache name/title on the image element itself so we always have reliable data
+                function findCardText(img){
+                    let el = img;
+                    for(let i=0;i<6 && el; i++){
+                        // search for headings/paragraphs in this ancestor
+                        const nameEl = el.querySelector && el.querySelector('h3, h4');
+                        const titleEl = el.querySelector && el.querySelector('p');
+                        if(nameEl || titleEl){
+                            return { name: nameEl ? nameEl.textContent.trim() : '', title: titleEl ? titleEl.textContent.trim() : '' };
+                        }
+                        el = el.parentElement;
+                    }
+                    return { name: '', title: '' };
+                }
+
+                imgs.forEach(img => {
+                    try{
+                        img.style.cursor = 'zoom-in';
+                        const txt = findCardText(img);
+                        img.dataset.lbName = txt.name || '';
+                        img.dataset.lbTitle = txt.title || '';
+                    }catch(e){}
+                });
+
+                // Use delegated clicks so dynamically inserted images and any layout differences still work.
+                document.addEventListener('click', function delegatedOpen(e){
+                    const clickedImg = e.target.closest && e.target.closest('img');
+                    if(!clickedImg) return;
+                    // ignore clicks on images that are inside the modal itself (so clicking the zoomed image doesn't re-open/clear fields)
+                    const modalEl = document.getElementById('imageModal');
+                    if(modalEl && modalEl.contains(clickedImg)) return;
+                    // only respond to org-chart images or images whose src contains the organizational chart path
+                    const isOrg = !!clickedImg.closest('.org-chart') || (clickedImg.src && clickedImg.src.includes('organizational chart'));
+                    if(!isOrg) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // open modal from the clicked image
+                    modalImg.src = clickedImg.src;
+                    modalImg.alt = clickedImg.alt || '';
+                    // prefer cached values, but fallback to a live lookup if empty (handles unusual markup)
+                    let name = clickedImg.dataset.lbName || '';
+                    let title = clickedImg.dataset.lbTitle || '';
+                    if(!name && !title){
+                        const fallback = (function(){
+                            let el = clickedImg;
+                            for(let i=0;i<8 && el; i++){
+                                const n = el.querySelector && el.querySelector('h3, h4');
+                                const t = el.querySelector && el.querySelector('p');
+                                if(n || t) return { name: n? n.textContent.trim(): '', title: t? t.textContent.trim(): '' };
+                                el = el.parentElement;
+                            }
+                            return { name:'', title:'' };
+                        })();
+                        name = fallback.name; title = fallback.title;
+                    }
+                    modalName.textContent = name || '';
+                    modalTitle.textContent = title || '';
+                    modal.classList.remove('hidden');
+                    try{ closeBtn && closeBtn.focus(); }catch(e){}
+                }, { capture: false });
+
+                // close handlers
+                if(closeBtn) closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+                modal.addEventListener('click', (e) => { if (e.target === e.currentTarget) modal.classList.add('hidden'); });
+
+                // close on Escape
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' || e.key === 'Esc') {
+                        if (!modal.classList.contains('hidden')) modal.classList.add('hidden');
+                    }
+                });
+            })();
+        });
+    </script>
+
+    <script>
+        // Extra safety: directly attach click handlers to organizational chart images (one-shot diagnostics)
+        (function(){
+            try{
                 const modal = document.getElementById('imageModal');
                 const modalImg = document.getElementById('modalImage');
                 const modalName = document.getElementById('modalName');
                 const modalTitle = document.getElementById('modalTitle');
-                modalImg.src = img.src;
-                modalImg.alt = img.alt;
-                const nameEl = img.closest('.text-center').querySelector('h3, h4');
-                modalName.textContent = nameEl ? nameEl.textContent : '';
-                const titleEl = img.closest('.text-center').querySelector('p');
-                modalTitle.textContent = titleEl ? titleEl.textContent : '';
-                modal.classList.remove('hidden');
-            });
-        });
+                const closeBtn = document.getElementById('closeModal');
+                if(!modal || !modalImg) return;
 
-        document.getElementById('closeModal').addEventListener('click', () => {
-            document.getElementById('imageModal').classList.add('hidden');
-        });
+                const imgs = Array.from(document.querySelectorAll('.org-chart img')).concat(
+                    Array.from(document.querySelectorAll('img[src*="organizational chart"]'))
+                ).filter(Boolean);
+                console.debug('jamila: safety attach found', imgs.length, 'org-chart images');
 
-        document.getElementById('imageModal').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) {
-                e.currentTarget.classList.add('hidden');
-            }
-        });
+                imgs.forEach(img => {
+                    // ensure dataset cache exists
+                    if(!img.dataset.lbName || !img.dataset.lbTitle){
+                        let name = '';
+                        let title = '';
+                        let el = img;
+                        for(let i=0;i<6 && el; i++){
+                            const n = el.querySelector && el.querySelector('h3, h4');
+                            const t = el.querySelector && el.querySelector('p');
+                            if(n || t){ name = n? n.textContent.trim(): name; title = t? t.textContent.trim(): title; break; }
+                            el = el.parentElement;
+                        }
+                        img.dataset.lbName = img.dataset.lbName || name || '';
+                        img.dataset.lbTitle = img.dataset.lbTitle || title || '';
+                    }
+                    img.style.cursor = 'zoom-in';
+                    img.addEventListener('click', function(e){
+                        try{
+                            e.preventDefault(); e.stopPropagation();
+                            modalImg.src = img.src;
+                            modalImg.alt = img.alt || '';
+                            modalName.textContent = img.dataset.lbName || '';
+                            modalTitle.textContent = img.dataset.lbTitle || '';
+                            modal.classList.remove('hidden');
+                            console.debug('jamila: opened modal for', img.src, 'name=', img.dataset.lbName);
+                            try{ closeBtn && closeBtn.focus(); }catch(e){}
+                        }catch(e){ console.warn('jamila: modal open failed', e); }
+                    });
+                });
+            }catch(e){ console.warn('jamila: lightbox safety attach failed', e); }
+        })();
+
+        // Ultimate fallback: capture-phase delegated listener to catch clicks even if bubbling was stopped
+        (function(){
+            try{
+                document.addEventListener('click', function(e){
+                    try{
+                        const clicked = e.target && (e.target.closest ? e.target.closest('img') : (e.target.tagName === 'IMG' ? e.target : null));
+                        if(!clicked) return;
+                        if(!(clicked.src && clicked.src.includes('organizational chart'))) return;
+                        const modal = document.getElementById('imageModal');
+                        const modalImg = document.getElementById('modalImage');
+                        const modalName = document.getElementById('modalName');
+                        const modalTitle = document.getElementById('modalTitle');
+                        const closeBtn = document.getElementById('closeModal');
+                        if(!modal || !modalImg) return;
+                        if(modal.contains(e.target)) return;
+                        modalImg.src = clicked.src;
+                        modalImg.alt = clicked.alt || '';
+                        modalName.textContent = clicked.dataset.lbName || '';
+                        modalTitle.textContent = clicked.dataset.lbTitle || '';
+                        modal.classList.remove('hidden');
+                        try{ closeBtn && closeBtn.focus(); }catch(_){ }
+                    }catch(_){ }
+                }, { capture: true });
+                console.debug('jamila: capture-phase fallback installed');
+            }catch(e){ console.warn('jamila: capture fallback failed', e); }
+        })();
     </script>
+
+    <!-- Debug helper removed. -->
 
     <!-- Modal for image view -->
     <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
@@ -1188,3 +1637,38 @@
         </div>
     </div>
 </html>
+
+<script id="_sw-debug">
+    (function(){
+        try{
+            const groups = ['clients-swiper','departments-swiper'];
+            const report = {};
+            groups.forEach(g => {
+                const root = document.querySelector('.' + g);
+                if(!root){ report[g] = { found:false }; return; }
+                const next = root.querySelector('.swiper-button-next');
+                const prev = root.querySelector('.swiper-button-prev');
+                const pag = root.querySelector('.swiper-pagination');
+                report[g] = {
+                    found: true,
+                    next: !!next,
+                    prev: !!prev,
+                    pag: !!pag,
+                    nextRect: next ? next.getBoundingClientRect() : null,
+                    prevRect: prev ? prev.getBoundingClientRect() : null,
+                    pagRect: pag ? pag.getBoundingClientRect() : null,
+                    nextStyle: next ? getComputedStyle(next) : null,
+                    prevStyle: prev ? getComputedStyle(prev) : null,
+                    pagStyle: pag ? getComputedStyle(pag) : null,
+                    topElementsAtNext: next ? document.elementsFromPoint(Math.round((next.getBoundingClientRect().left + next.getBoundingClientRect().right)/2), Math.round((next.getBoundingClientRect().top + next.getBoundingClientRect().bottom)/2)).slice(0,6).map(e=>e.className || e.tagName) : null
+                };
+                [next, prev, pag].forEach(el=>{ if(!el) return; el.style.outline='3px dashed rgba(0,128,255,0.9)'; el.style.background='rgba(59,130,246,0.06)'; setTimeout(()=>{ el.style.outline=''; el.style.background=''; }, 2200); });
+            });
+            console.log('SWIPER-DIAG', report);
+            // expose for manual inspection
+            window._swDiag = report;
+        }catch(e){ console.error('SWIPER-DIAG-ERR', e); }
+        // remove this script tag so it's one-shot
+        try{ const s = document.getElementById('_sw-debug'); if(s) s.remove(); }catch(e){}
+    })();
+</script>

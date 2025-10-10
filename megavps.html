@@ -379,7 +379,7 @@
                     Meet the leadership team guiding our security excellence
                 </p>
             </div>
-
+        <div class="org-chart" data-aos="fade-up">
             <!-- Executive Level -->
              <div class="flex flex-col items-center mb-16">
                     <!-- President -->
@@ -726,7 +726,7 @@
                     <div class="swiper-pagination !bottom-0"></div>
                 </div>
             </div>
-
+        </div>
             <!-- Legend -->
             <div class="mt-12 flex justify-center gap-8" data-aos="fade-up">
                 <div class="flex items-center">
@@ -1075,6 +1075,194 @@
         });
 
         feather.replace();
+        
+        // SW-FIX: move misplaced controls and reinitialize departments swiper (copied from jamila.html)
+        (function(){
+            try{
+                document.querySelectorAll('.swiper-slide .swiper-pagination, .swiper-slide .swiper-button-next, .swiper-slide .swiper-button-prev').forEach(el => {
+                    const sw = el.closest('.swiper');
+                    if(!sw) return;
+                    if(el.parentElement !== sw) {
+                        sw.appendChild(el);
+                        console.log('SW-FIX: moved control', el.className, 'to', sw.className);
+                    }
+                });
+                setTimeout(()=>{
+                    try{
+                        if(window.departmentsSwiper && typeof window.departmentsSwiper.destroy === 'function'){
+                            try{ window.departmentsSwiper.destroy(true, true); } catch(e){}
+                        }
+                        window.departmentsSwiper = new Swiper('.departments-swiper', {
+                            slidesPerView: 1,
+                            spaceBetween: 30,
+                            loop: true,
+                            autoplay: { delay: 5000, disableOnInteraction: false },
+                            pagination: { el: '.departments-swiper .swiper-pagination', clickable: true },
+                            navigation: { nextEl: '.departments-swiper .swiper-button-next', prevEl: '.departments-swiper .swiper-button-prev' },
+                            breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+                        });
+                        console.log('SW-FIX: departmentsSwiper reinitialized');
+                    }catch(e){ console.error('SW-FIX: reinit error', e); }
+                }, 30);
+            }catch(e){ console.error('SW-FIX error', e); }
+        })();
+    </script>
+
+    <!-- Modal / lightbox (Jamila canonical implementation) -->
+    <style>
+        .js-lightbox-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:99999; opacity:0; pointer-events:none; transition: opacity 180ms ease-in-out; }
+        .js-lightbox-overlay.show { opacity:1; pointer-events:auto; }
+        .js-lightbox-overlay img { max-width:92%; max-height:92%; border-radius:8px; box-shadow:0 20px 50px rgba(0,0,0,0.6); }
+        .js-lightbox-close { position:absolute; top:18px; right:18px; width:40px; height:40px; display:flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.06); color:#fff; border-radius:9999px; cursor:pointer; border:1px solid rgba(255,255,255,0.12); }
+        .js-lightbox-close:hover { background: rgba(255,255,255,0.12); }
+    </style>
+
+    <!-- Modal for image view (same structure expected on all pages) -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-white p-4 rounded-lg max-w-md w-full mx-4">
+            <div class="flex justify-end">
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+            <img id="modalImage" src="" alt="" class="w-full h-auto">
+            <h3 id="modalName" class="text-xl font-bold mt-4"></h3>
+            <p id="modalTitle" class="text-gray-600"></p>
+        </div>
+    </div>
+
+    <script>
+        // Jamila's robust modal implementation (DOMContentLoaded, caching, delegated open, close handlers)
+        document.addEventListener('DOMContentLoaded', function(){
+            (function(){
+                const modal = document.getElementById('imageModal');
+                try{ if(modal && modal.parentElement !== document.body) document.body.appendChild(modal); }catch(e){}
+                const modalImg = document.getElementById('modalImage');
+                const modalName = document.getElementById('modalName');
+                const modalTitle = document.getElementById('modalTitle');
+                const closeBtn = document.getElementById('closeModal');
+                if(!modal || !modalImg) return;
+
+               const imgs = Array.from(document.querySelectorAll('.zoomable, .org-chart img, .departments-swiper img'));
+
+
+                function findCardText(img){
+                    let el = img;
+                    for(let i=0;i<6 && el; i++){
+                        const nameEl = el.querySelector && el.querySelector('h3, h4');
+                        const titleEl = el.querySelector && el.querySelector('p');
+                        if(nameEl || titleEl){ return { name: nameEl ? nameEl.textContent.trim() : '', title: titleEl ? titleEl.textContent.trim() : '' }; }
+                        el = el.parentElement;
+                    }
+                    return { name: '', title: '' };
+                }
+
+                imgs.forEach(img => {
+                    try{ img.style.cursor = 'zoom-in'; const txt = findCardText(img); img.dataset.lbName = txt.name || ''; img.dataset.lbTitle = txt.title || ''; }catch(e){}
+                });
+
+                document.addEventListener('click', function delegatedOpen(e){
+                    const clickedImg = e.target.closest && e.target.closest('img');
+                    if(!clickedImg) return;
+                    const modalEl = document.getElementById('imageModal');
+                    if(modalEl && modalEl.contains(clickedImg)) return;
+                    const isOrg = !!clickedImg.closest('.org-chart') || (clickedImg.src && clickedImg.src.includes('organizational chart'));
+                    if(!isOrg) return;
+                    e.preventDefault(); e.stopPropagation();
+
+                    modalImg.src = clickedImg.src;
+                    modalImg.alt = clickedImg.alt || '';
+                    let name = clickedImg.dataset.lbName || '';
+                    let title = clickedImg.dataset.lbTitle || '';
+                    if(!name && !title){
+                        const fallback = (function(){ let el = clickedImg; for(let i=0;i<8 && el; i++){ const n = el.querySelector && el.querySelector('h3, h4'); const t = el.querySelector && el.querySelector('p'); if(n || t) return { name: n? n.textContent.trim(): '', title: t? t.textContent.trim(): '' }; el = el.parentElement; } return { name:'', title:'' }; })();
+                        name = fallback.name; title = fallback.title;
+                    }
+                    modalName.textContent = name || '';
+                    modalTitle.textContent = title || '';
+                    modal.classList.remove('hidden');
+                    try{ closeBtn && closeBtn.focus(); }catch(e){}
+                }, { capture: false });
+
+                if(closeBtn) closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+                modal.addEventListener('click', (e) => { if (e.target === e.currentTarget) modal.classList.add('hidden'); });
+                document.addEventListener('keydown', (e) => { if (e.key === 'Escape' || e.key === 'Esc') { if (!modal.classList.contains('hidden')) modal.classList.add('hidden'); } });
+            })();
+        });
+    </script>
+    <script>
+        // Extra safety: directly attach click handlers to organizational chart images
+        (function(){
+            try{
+                const modal = document.getElementById('imageModal');
+                const modalImg = document.getElementById('modalImage');
+                const modalName = document.getElementById('modalName');
+                const modalTitle = document.getElementById('modalTitle');
+                const closeBtn = document.getElementById('closeModal');
+                if(!modal || !modalImg) return;
+
+                const imgs = Array.from(document.querySelectorAll('img')).filter(i => i.src && i.src.includes('organizational chart'));
+                console.debug('megavps: safety attach found', imgs.length, 'org-chart images');
+                imgs.forEach(img => {
+                    // ensure dataset exists
+                    if(!img.dataset.lbName || !img.dataset.lbTitle){
+                        let name = '';
+                        let title = '';
+                        let el = img;
+                        for(let i=0;i<6 && el; i++){
+                            const n = el.querySelector && el.querySelector('h3, h4');
+                            const t = el.querySelector && el.querySelector('p');
+                            if(n || t){ name = n? n.textContent.trim(): name; title = t? t.textContent.trim(): title; break; }
+                            el = el.parentElement;
+                        }
+                        img.dataset.lbName = img.dataset.lbName || name || '';
+                        img.dataset.lbTitle = img.dataset.lbTitle || title || '';
+                    }
+
+                    img.style.cursor = 'zoom-in';
+                    img.addEventListener('click', function(e){
+                        try{
+                            e.preventDefault(); e.stopPropagation();
+                            modalImg.src = img.src;
+                            modalImg.alt = img.alt || '';
+                            modalName.textContent = img.dataset.lbName || '';
+                            modalTitle.textContent = img.dataset.lbTitle || '';
+                            modal.classList.remove('hidden');
+                            console.debug('megavps: opened modal for', img.src, 'name=', img.dataset.lbName);
+                            try{ closeBtn && closeBtn.focus(); }catch(e){}
+                        }catch(e){ console.warn('megavps: modal open failed', e); }
+                    });
+                });
+            }catch(e){ console.warn('megavps: lightbox safety attach failed', e); }
+        })();
+    </script>
+    <script>
+        // Ultimate fallback: capture-phase delegated listener to catch clicks even if bubbling was stopped
+        (function(){
+            try{
+                document.addEventListener('click', function(e){
+                    try{
+                        const clicked = e.target && (e.target.closest ? e.target.closest('img') : (e.target.tagName === 'IMG' ? e.target : null));
+                        if(!clicked) return;
+                        if(!(clicked.src && clicked.src.includes('organizational chart'))) return;
+                        const modal = document.getElementById('imageModal');
+                        const modalImg = document.getElementById('modalImage');
+                        const modalName = document.getElementById('modalName');
+                        const modalTitle = document.getElementById('modalTitle');
+                        const closeBtn = document.getElementById('closeModal');
+                        if(!modal || !modalImg) return;
+                        // don't trigger when clicking inside the modal
+                        if(modal.contains(e.target)) return;
+                        // populate and show
+                        modalImg.src = clicked.src;
+                        modalImg.alt = clicked.alt || '';
+                        modalName.textContent = clicked.dataset.lbName || '';
+                        modalTitle.textContent = clicked.dataset.lbTitle || '';
+                        modal.classList.remove('hidden');
+                        try{ closeBtn && closeBtn.focus(); }catch(_){}
+                    }catch(_){}
+                }, { capture: true });
+                console.debug('megavps: capture-phase fallback installed');
+            }catch(e){ console.warn('megavps: capture fallback failed', e); }
+        })();
     </script>
 </body>
 </html>
