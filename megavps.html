@@ -82,28 +82,37 @@
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="absolute left-4 top-4">
-            <a href="index.html" class="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
-                <i data-feather="arrow-left" class="w-5 h-5 mr-1"></i>
-                <span class="text-sm font-medium">Back to Portal</span>
-            </a>
-        </div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
                         <img src="images/megavps.png" alt="MegaVPS Security Logo" class="h-8 w-auto">
-                        <span class="ml-2 text-xl font-bold text-gray-800">MegaVPS Security Agency, Inc.</span>
-                    
-</div>
+                        <span class="ml-2 text-base sm:text-xl font-bold text-gray-800">MegaVPS Security Agency, Inc.</span>
+                    </div>
                 </div>
-                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                <div class="hidden md:flex md:items-center md:justify-between">
                     <a href="#home" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Home</a>
                     <a href="#story" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Our Story</a>
                     <a href="#clients" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Clients</a>
                     <a href="#news" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">News & Events</a>
                     <a href="#faq" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">FAQs</a>
                     <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900 px-3 py-2 text-sm font-medium">Contact</a>
+                    <div class="relative inline-block text-left">
+                        <div>
+                            <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="options-menu" aria-haspopup="true" aria-expanded="true">
+                                Websites
+                                <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 hidden">
+                            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                <a href="jamila.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Jamila</a>
+                                <a href="vps.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">VPS</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="-mr-2 flex items-center md:hidden">
                     <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 focus:outline-none">
@@ -113,7 +122,7 @@
             </div>
         </div>
         <!-- Mobile menu -->
-        <div class="mobile-menu hidden md:hidden">
+        <div class="mobile-menu hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Home</a>
                 <a href="#story" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Our Story</a>
@@ -391,8 +400,8 @@
                         <p class="text-yellow-600 text-center font-medium">President</p>
                     </div>
                     <!-- Vice President --> 
-                </div>                <!-- Level 1: Vice Presidents (connected to President) -->
-                <div class="flex justify-center gap-8 mb-16">
+                <!-- Level 1: Vice Presidents (connected to President) -->
+                <div class="flex flex-col sm:flex-row justify-center gap-8 mb-16">
                     <div class="bg-gradient-to-r from-yellow-100 to-yellow-50 p-6 rounded-xl shadow-lg border-2 border-yellow-500 w-72">
                         <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden bg-white ring-4 ring-yellow-400">
                             <img src="images/organizational chart/vice.png" alt="Vice President" class="w-full h-full object-cover">
@@ -946,7 +955,7 @@
             </div>
         </div>
             <!-- Legend -->
-            <div class="mt-12 flex justify-center gap-8" data-aos="fade-up">
+            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-8" data-aos="fade-up">
                 <div class="flex items-center">
                     <div class="w-4 h-4 bg-gradient-to-r from-yellow-100 to-yellow-50 border-2 border-yellow-500 rounded mr-2"></div>
                     <span class="text-sm text-gray-600">Top Management</span>
@@ -1323,6 +1332,38 @@
                     }catch(e){ console.error('SW-FIX: reinit error', e); }
                 }, 30);
             }catch(e){ console.error('SW-FIX error', e); }
+        })();
+
+        (function setupWebsitesDropdown(){
+            const run = () => {
+                const menuButton = document.getElementById('options-menu');
+                if (!menuButton) return;
+                const dropdown = menuButton.parentElement ? menuButton.parentElement.nextElementSibling : null;
+                if (!dropdown) return;
+
+                if (menuButton.dataset.dropdownBound === '1') return;
+                menuButton.dataset.dropdownBound = '1';
+
+                menuButton.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    dropdown.classList.toggle('hidden');
+                    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+                    menuButton.setAttribute('aria-expanded', (!expanded).toString());
+                });
+
+                document.addEventListener('click', function (event) {
+                    if (!menuButton.contains(event.target) && !dropdown.contains(event.target)) {
+                        dropdown.classList.add('hidden');
+                        menuButton.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            };
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', run, { once: true });
+            } else {
+                run();
+            }
         })();
     </script>
 
