@@ -78,6 +78,21 @@
             background-color: #f59e0b !important;
         }
     </style>
+    <style>
+        /* Responsive fixes */
+        @media (max-width: 768px) {
+            body, .hero-section {
+                background-attachment: scroll !important;
+                background-size: cover !important;
+            }
+        }
+        /* Make iframes scale responsively when using 'responsive-embed' */
+        iframe.responsive-embed {
+            width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 16 / 9;
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
@@ -130,6 +145,12 @@
                 <a href="#news" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">News & Events</a>
                 <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">FAQs</a>
                 <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Contact</a>
+
+                <div class="mt-2 border-t border-gray-200 pt-2">
+                    <span class="block px-3 py-2 text-xs uppercase text-gray-500">Other Websites</span>
+                    <a href="jamila.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Jamila</a>
+                    <a href="vps.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">VPS</a>
+                </div>
             </div>
         </div>
     </nav>
