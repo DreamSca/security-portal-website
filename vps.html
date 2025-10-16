@@ -135,6 +135,12 @@
                 <a href="#news" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">News & Events</a>
                 <a href="#faq" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">FAQs</a>
                 <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Contact</a>
+
+                <div class="mt-2 border-t border-gray-200 pt-2">
+                    <span class="block px-3 py-2 text-xs uppercase text-gray-500">Other Websites</span>
+                    <a href="jamila.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">Jamila</a>
+                    <a href="megavps.html" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900">MegaVPS</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -1081,6 +1087,80 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Initialize AOS animations
+        if (window.AOS) {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+        }
+
+        // Initialize Feather icons
+        if (window.feather && typeof feather.replace === 'function') {
+            feather.replace();
+        }
+
+        // Mobile menu toggle (guarded for safety)
+        (function(){
+            var btn = document.querySelector('.mobile-menu-button');
+            var menu = document.querySelector('.mobile-menu');
+            if (btn && menu) {
+                btn.addEventListener('click', function() {
+                    menu.classList.toggle('hidden');
+                });
+            }
+        })();
+
+        // Initialize Swipers (clients and departments)
+        (function(){
+            // Clients carousel
+            if (window.Swiper) {
+                try {
+                    window.clientsSwiper = new Swiper('.clients-swiper', {
+                        slidesPerView: 1,
+                        spaceBetween: 16,
+                        autoplay: { delay: 5000, disableOnInteraction: false },
+                        pagination: {
+                            el: '.clients-swiper .swiper-pagination',
+                            clickable: true
+                        },
+                        navigation: {
+                            nextEl: '.clients-swiper .swiper-button-next',
+                            prevEl: '.clients-swiper .swiper-button-prev'
+                        },
+                        breakpoints: {
+                            640: { slidesPerView: 2 },
+                            1024: { slidesPerView: 3 }
+                        }
+                    });
+                } catch(e) { /* no-op */ }
+
+                // Departments carousel
+                try {
+                    window.departmentsSwiper = new Swiper('.departments-swiper', {
+                        slidesPerView: 1,
+                        spaceBetween: 16,
+                        autoplay: { delay: 5000, disableOnInteraction: false },
+                        pagination: {
+                            el: '.departments-swiper .swiper-pagination',
+                            clickable: true
+                        },
+                        navigation: {
+                            nextEl: '.departments-swiper .swiper-button-next',
+                            prevEl: '.departments-swiper .swiper-button-prev'
+                        },
+                        breakpoints: {
+                            768: { slidesPerView: 2 },
+                            1024: { slidesPerView: 3 }
+                        }
+                    });
+                } catch(e) { /* no-op */ }
+            }
+        })();
+    </script>
 
     <script>
         // Initialize AOS animations

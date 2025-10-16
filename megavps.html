@@ -1518,5 +1518,55 @@
             }catch(e){ console.warn('megavps: capture fallback failed', e); }
         })();
     </script>
+<script>
+        // Initialize AOS animations
+        if (window.AOS) {
+            AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+        }
+
+        // Feather icons
+        if (window.feather && typeof feather.replace === 'function') {
+            feather.replace();
+        }
+
+        // Mobile menu toggle
+        (function(){
+            var btn = document.querySelector('.mobile-menu-button');
+            var menu = document.querySelector('.mobile-menu');
+            if (btn && menu) {
+                btn.addEventListener('click', function(){ menu.classList.toggle('hidden'); });
+            }
+        })();
+
+        // Swiper initialization using sibling pagination/navigation
+        (function(){
+            if (!window.Swiper) return;
+
+            function initSwiperWithSiblings(selector, breakpoints) {
+                document.querySelectorAll(selector).forEach(function(container){
+                    var parent = container.parentElement || document;
+                    var paginationEl = parent.querySelector('.swiper-pagination');
+                    var nextEl = parent.querySelector('.swiper-button-next');
+                    var prevEl = parent.querySelector('.swiper-button-prev');
+
+                    try {
+                        new Swiper(container, {
+                            slidesPerView: 1,
+                            spaceBetween: 16,
+                            autoplay: { delay: 5000, disableOnInteraction: false },
+                            pagination: paginationEl ? { el: paginationEl, clickable: true } : undefined,
+                            navigation: (nextEl && prevEl) ? { nextEl: nextEl, prevEl: prevEl } : undefined,
+                            breakpoints: breakpoints || { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+                        });
+                    } catch (e) { /* no-op */ }
+                });
+            }
+
+            // Clients
+            initSwiperWithSiblings('.clients-swiper', { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } });
+            // Departments
+            initSwiperWithSiblings('.departments-swiper', { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } });
+        })();
+    </script>
 </body>
 </html>
