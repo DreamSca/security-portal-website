@@ -1,0 +1,17 @@
+
+{
+  "routes": [
+    { "src": "/(.*)", "dest": "public/$1" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*\\.(?:js|jsx|ts|tsx|css|svg|png|jpg|jpeg|gif|webp|ico))$",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
